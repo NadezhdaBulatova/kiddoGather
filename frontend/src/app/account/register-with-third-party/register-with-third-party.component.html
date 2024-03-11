@@ -1,0 +1,49 @@
+<div *ngIf="userId && accessToken && provider" class="form-wrapper">
+  <h1 [class.message]="submitted">
+    {{ !submitted ? "Continue registering with " + provider : message }}
+    {{ redirect ? " or " : ""
+    }}<a *ngIf="redirect" [routerLink]="redirect">click here</a>
+  </h1>
+  <form
+    *ngIf="!submitted"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
+    <div class="input-wrapper">
+      <img src="../../../assets/icons/signature.png" />
+      <input
+        type="text"
+        id="nickname"
+        formControlName="nickname"
+        required="true"
+        placeholder="Enter your username"
+      />
+    </div>
+    <div
+      *ngIf="form.get('nickname')?.invalid && form.get('nickname')?.touched"
+      class="error-wrapper"
+    >
+      <div *ngIf="form.get('nickname')?.hasError('required')">
+        Username is required
+      </div>
+      <div *ngIf="form.get('nickname')?.hasError('minlength')">
+        Username should be at least 3 characters long
+      </div>
+      <div *ngIf="form.get('nickname')?.hasError('maxlength')">
+        Username should be maximum 15 characters long
+      </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid" [ngClass]="">
+      Register
+    </button>
+  </form>
+
+  <div *ngIf="!submitted" class="line">
+    <div>or <a routerLink="/login">register</a></div>
+  </div>
+
+  <div *ngIf="!submitted" class="line">
+    <div>or <a routerLink="/login">log in</a></div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<nav class="maps-navigation">
+  <a routerLink="events" routerLinkActive="active-link">places</a>
+  <a routerLink="places" routerLinkActive="active-link">events</a>
+</nav>
+<div class="maps-filtering">
+  <div class="maps-results">{{ mapsService.locations().length }} results</div>
+  <div class="maps-filter"></div>
+</div>
+<!-- <input
+  type="text"
+  class="my-search-box"
+  (keydown.enter)="$event.preventDefault()"
+  placeholder="Search Location"
+  type="text"
+  #search
+/> -->
+<div class="maps-wrapper">
+  <router-outlet />
+  <!-- <google-map
+    #myGoogleMap
+    [zoom]="zoom"
+    width="100%"
+    height="100%"
+    [center]="center"
+    [options]="options"
+  ></google-map> -->
+</div>

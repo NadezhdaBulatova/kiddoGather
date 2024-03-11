@@ -1,0 +1,13 @@
+<div class="title">{{ "chat with " + name }}</div>
+<div class="body">
+  <div
+    class="message"
+    [ngClass]="{ passive: !lastMessageFromUser, active: lastMessageFromUser }"
+  >
+    <div class="message-content">{{ text }}</div>
+    <div class="message-date">{{ dateDisplay }}</div>
+  </div>
+  <div class="img-wrapper">
+    <img [src]="image ? image : '../../../assets/icons/user.png'" />
+  </div>
+</div>

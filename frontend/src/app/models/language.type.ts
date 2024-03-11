@@ -1,0 +1,11 @@
+export enum LanguageTypes {
+  ENGLISH = 'ENGLISH',
+  SPANISH = 'SPANISH',
+  FRENCH = 'FRENCH',
+  GERMAN = 'GERMAN',
+  ITALIAN = 'ITALIAN',
+  DUTCH = 'DUTCH',
+  RUSSIAN = 'RUSSIAN',
+  CHINESE = 'CHINESE',
+  ARABIC = 'ARABIC',
+}

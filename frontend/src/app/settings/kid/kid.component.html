@@ -1,0 +1,11 @@
+<div class="kid-info-wrapper small">
+  <div class="icon-wrapper"><img [src]="icon" /></div>
+  <div class="description">{{ name }}</div>
+  <div class="description">{{ ageToDisplay }}</div>
+  <img
+    *ngIf="!small"
+    class="delete"
+    src="../../../assets/icons/cancel-light.png"
+    (click)="deleteKidEntry(id)"
+  />
+</div>

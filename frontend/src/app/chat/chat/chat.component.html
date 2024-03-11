@@ -1,0 +1,42 @@
+<div *ngIf="overview" class="chat-wrapper">
+  <app-chat-overview
+    *ngFor="let chat of messageService.chats()"
+    [name]="getChatWith(chat)?.name"
+    [image]="getChatWith(chat)?.image"
+    [text]="chat?.lastMessage?.text"
+    [date]="getLastMessageDate(chat)"
+    [chatId]="chat.id"
+  ></app-chat-overview>
+</div>
+<div *ngIf="!overview" class="chat-wrapper chat-wrapper-personal">
+  <div class="title">{{ title }}</div>
+  <div class="close-wrapper" (click)="onClose()">
+    <img src="../../../assets/icons/cancel.png" />
+  </div>
+  <div class="body">
+    <app-chat-box
+      *ngFor="let message of messages"
+      [active]="isMessageActive(message)"
+      [date]="getMessageDate(message)"
+      [text]="message.text"
+      [image]="
+        isMessageActive(message)
+          ? checkImage(message.to.image)
+          : checkImage(message.from.image)
+      "
+      [userImage]="
+        isMessageActive(message)
+          ? checkImage(message.from.image)
+          : checkImage(message.to.image)
+      "
+    ></app-chat-box>
+  </div>
+  <div class="input-wrapper">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="text" />
+      <button type="submit">
+        <img src="../../../assets/icons/send.png" />
+      </button>
+    </form>
+  </div>
+</div>

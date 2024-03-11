@@ -1,0 +1,58 @@
+:host {
+  margin: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+
+  .filtering {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .results-overview {
+      text-transform: uppercase;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+
+    form {
+      align-items: center;
+      border-radius: 5px;
+      border: solid 1px #052b37;
+      outline: none;
+
+      select {
+        font-size: small;
+        width: 150px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        border-radius: 5px;
+        background-color: #eeeeee;
+      }
+    }
+
+    .filter {
+      width: 30px;
+      height: 30px;
+      background-image: url("../../../assets/icons/filter.png");
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .results-wrapper {
+    flex: 10;
+    border-radius: 10px;
+    overflow-y: scroll;
+    background-color: #eeeeee;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

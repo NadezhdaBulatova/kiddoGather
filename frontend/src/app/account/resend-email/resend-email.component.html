@@ -1,0 +1,49 @@
+<div class="main-wrapper">
+  <h1>
+    {{ message }} {{ redirect ? " or " : ""
+    }}<a *ngIf="redirect" [routerLink]="redirect">click here</a>
+    <span *ngIf="!redirect">
+      or go to the <a routerLink="/login">login page</a></span
+    >
+  </h1>
+  <form
+    *ngIf="!requestSend"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
+    <div class="input-wrapper">
+      <img src="../../../assets/icons/email.png" />
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        required="true"
+        placeholder="Enter your email"
+      />
+    </div>
+    <div
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+      class="error-wrapper"
+    >
+      <div *ngIf="form.get('email')?.hasError('required')">
+        Email is required
+      </div>
+      <div *ngIf="form.get('email')?.hasError('email')">Email is invalid</div>
+    </div>
+
+    <div
+      *ngIf="
+        emailDoesNotExist !== '' &&
+        emailDoesNotExist === form.get('email')?.value
+      "
+      class="error-wrapper"
+    >
+      <div>
+        Entered email does not exist. Please enter a valid email or register
+      </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Request the email</button>
+    <button type="cancel" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

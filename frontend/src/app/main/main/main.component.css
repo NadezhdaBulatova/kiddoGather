@@ -1,0 +1,263 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .title-navigation {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+
+    .title-wrapper {
+      padding: 10px;
+      flex: 0 0 10%;
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 80px;
+        height: auto;
+      }
+    }
+    .account-info-wrapper {
+      color: #ccd4de;
+      flex: 0 0 10%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      display: flex;
+      .account-logo-wrapper {
+        width: 80px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 50px;
+          height: auto;
+        }
+      }
+      .username-wrapper {
+        font-size: large;
+        flex: 0 0 50%;
+      }
+      .logout-wrapper {
+        flex: 0 0 30%;
+        display: flex;
+        justify-content: flex-end;
+        button {
+          border: none;
+          background-color: #cdd4de;
+          color: #052b37;
+          width: 70px;
+          height: 30px;
+          text-transform: uppercase;
+          cursor: pointer;
+          border-radius: 10px;
+          font-size: x-small;
+        }
+      }
+    }
+    .navigation-wrapper {
+      justify-content: center;
+      align-items: flex-end;
+      flex: 0 0 30%;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        width: 70%;
+        display: flex;
+        font-size: 0.8em;
+        flex: 0 0 10%;
+        text-transform: uppercase;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 25px 0 0 25px;
+        text-decoration: none;
+        color: #f3f4f4;
+        font-weight: bold;
+
+        &.active-link {
+          background-color: #ccd4de;
+          color: #052b37;
+          background-color: none;
+        }
+
+        div {
+          width: 1.5em;
+          height: 1.5em;
+          background-size: cover;
+          background-position: center;
+          margin-right: 30px;
+        }
+        span {
+          display: inline-block;
+        }
+      }
+    }
+    .image-wrapper {
+      flex: 0 0 50%;
+      position: relative;
+      overflow: hidden;
+
+      .circle {
+        border-radius: 50%;
+        position: absolute;
+      }
+      .left-up {
+        height: 200px;
+        width: 200px;
+        background-color: #118ab2;
+        top: 30px;
+        left: 30px;
+      }
+      .right-up {
+        height: 190px;
+        width: 190px;
+        background-color: #27a300;
+        top: 40px;
+        right: 35px;
+      }
+      .left-down {
+        height: 200px;
+        width: 200px;
+        background-color: #ff0054;
+        bottom: -15px;
+        left: 20px;
+      }
+      .right-down {
+        height: 220px;
+        width: 220px;
+        background-color: #ffbd00;
+        bottom: -30px;
+        right: 20px;
+      }
+      .background-image {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        background-size: cover;
+        background-position: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .title-account {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    .title-wrapper {
+      padding: 10px;
+      flex: 0 0 10%;
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 100px;
+        height: auto;
+      }
+    }
+    .image-wrapper-account {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+
+      .circle {
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+      .left-up {
+        height: 250px;
+        width: 250px;
+        background-color: #118ab2;
+        transform: translate(-100%, -100%);
+      }
+      .right-up {
+        height: 300px;
+        width: 300px;
+        background-color: #27a300;
+        transform: translate(-20%, -80%);
+      }
+      .left-down {
+        height: 350px;
+        width: 350px;
+        background-color: #ff0054;
+        transform: translate(-90%, -20%);
+      }
+      .right-down {
+        height: 280px;
+        width: 280px;
+        background-color: #ffbd00;
+        transform: translate(-10%, -20%);
+      }
+      .background-image {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        background-size: cover;
+        background-position: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .circle {
+      border-radius: 50%;
+      position: absolute;
+      background-color: #052b37;
+    }
+    .circle-1 {
+      height: 200px;
+      width: 200px;
+      top: -5%;
+      right: -10%;
+    }
+    .circle-2 {
+      height: 250px;
+      width: 250px;
+      top: 15%;
+      right: -20%;
+    }
+    .circle-3 {
+      height: 170px;
+      width: 170px;
+      top: 45%;
+      right: -10%;
+    }
+    .circle-4 {
+      height: 220px;
+      width: 220px;
+      top: 60%;
+      right: -20%;
+    }
+    .circle-5 {
+      height: 300px;
+      width: 300px;
+      bottom: -20%;
+      right: -20%;
+    }
+  }
+
+  .main-content {
+    flex: 5;
+    background-color: #ccd4de;
+    display: flex;
+  }
+  .main-content-account {
+    flex: 0 0 50%;
+    background-color: #ccd4de;
+  }
+  h1 {
+    color: #cdd4de;
+    font-family: "Protest Riot", sans-serif;
+    letter-spacing: 5px;
+    font-size: 40px;
+  }
+}

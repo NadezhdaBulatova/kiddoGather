@@ -1,0 +1,293 @@
+<div class="main-wrapper">
+  <div class="account-picture-wrapper">
+    <div class="user-icon-wrapper">
+      <img
+        class="user-icon"
+        [src]="personalInformationService.profilePictureURL()"
+      />
+      <label for="fileInput">
+        <img class="edit" src="../../assets/icons/edit-light.png" />
+      </label>
+      <input
+        id="fileInput"
+        type="file"
+        (change)="onFileSelected($event)"
+        style="display: none"
+      />
+    </div>
+    <div class="button-wrapper"><button (click)="logout()">Logout</button></div>
+  </div>
+  <div class="account-info-wrapper">
+    <div class="user-name">
+      <div *ngIf="!editingName" class="user-name-wrapper">
+        <span>{{ personalInformationService.name() }}</span>
+        <img
+          class="edit"
+          src="../../assets/icons/edit-dark.png"
+          (click)="editName()"
+        />
+      </div>
+      <form *ngIf="editingName" [formGroup]="form" (ngSubmit)="onSubmitName()">
+        <input
+          formControlName="name"
+          type="text"
+          required="true"
+          placeholder="Enter your new username"
+        />
+        <button type="submit" [disabled]="form.invalid">Ok</button>
+        <button (click)="onCancelName()">Cancel</button>
+      </form>
+      <div
+        *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+        class="error-wrapper"
+      >
+        <div *ngIf="form.get('name')?.hasError('required')">
+          Username is required
+        </div>
+        <div *ngIf="form.get('name')?.hasError('minlength')">
+          Username should be at least 3 characters long
+        </div>
+        <div *ngIf="form.get('name')?.hasError('maxlength')">
+          Username should be maximum 15 characters long
+        </div>
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="personal-info">
+        <div class="info">
+          <img class="icon" src="../../assets/icons/cake.png" />
+          <div class="info-subdiv" *ngIf="!editingDate">
+            <div class="content">
+              {{ personalInformationService.derivedBirthday() }}
+            </div>
+            <img
+              class="edit"
+              src="../../assets/icons/edit-dark.png"
+              (click)="editDate()"
+            />
+          </div>
+          <form
+            *ngIf="editingDate"
+            [formGroup]="form"
+            (ngSubmit)="onSubmitDate()"
+          >
+            <input type="date" id="date" formControlName="date" />
+            <button type="submit">Ok</button>
+            <button (click)="onCancelDate()">Cancel</button>
+          </form>
+        </div>
+        <div class="info">
+          <img class="icon" src="../../assets/icons/worldwide.png" />
+          <div class="info-subdiv" *ngIf="!editingLocation">
+            <div class="content">
+              {{
+                personalInformationService.location()?.address ||
+                  "Location is not set"
+              }}
+            </div>
+            <img
+              class="edit"
+              src="../../assets/icons/edit-dark.png"
+              (click)="editLocation()"
+            />
+          </div>
+          <input
+            [class.hidden]="!editingLocation"
+            type="text"
+            class="my-search-box"
+            (keydown.enter)="$event.preventDefault()"
+            placeholder="Search Location"
+            type="text"
+            #search
+          />
+          <button
+            type="submit"
+            class="submit"
+            (click)="onSubmitLocation()"
+            *ngIf="editingLocation"
+          >
+            Ok
+          </button>
+        </div>
+        <div class="info">
+          <img class="icon" src="../../assets/icons/translate.png" />
+          <div class="info-subdiv" *ngIf="!editingLanguage">
+            <div class="content">
+              {{ personalInformationService.derivedLanguages() }}
+            </div>
+            <img
+              class="edit"
+              src="../../assets/icons/edit-dark.png"
+              (click)="editLanguage()"
+            />
+          </div>
+          <form
+            class="select-form"
+            *ngIf="editingLanguage"
+            [formGroup]="form"
+            (ngSubmit)="onSubmitLanguage()"
+          >
+            <select multiple formControlName="languages" id="languages">
+              <option *ngFor="let language of languages" [value]="language">
+                {{ language }}
+              </option>
+            </select>
+            <button type="submit">Ok</button>
+            <button (click)="onCancelLanguage()">Cancel</button>
+          </form>
+        </div>
+      </div>
+      <div class="kids-info">
+        <app-kid
+          *ngFor="let kid of personalInformationService.kids()"
+          [name]="kid.name"
+          [age]="kid.birthday"
+          [gender]="kid.gender"
+          [id]="kid.id || undefined"
+        ></app-kid>
+        <div class="add" (click)="openKidAddOverlay()">
+          <img src="../../assets/icons/add.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="map-wrapper">
+  <div class="places-list-wrapper">
+    <h3>Favorite places</h3>
+    <div
+      class="place"
+      *ngFor="let place of this.personalInformationService.locations()"
+      (click)="recenterMap(place)"
+    >
+      <img src="../../assets/icons/place.png" />
+      <div class="place-info">
+        <p class="name">{{ place?.name }}</p>
+        <p class="address">{{ place?.address }}</p>
+      </div>
+      <img
+        class="cancel"
+        src="../../assets/icons/cancel.png"
+        (click)="
+          confirmDeletePlace({
+            id: place.locationId,
+            name: place.name,
+            address: place.address
+          })
+        "
+      />
+    </div>
+  </div>
+  <div class="map">
+    <input
+      type="text"
+      class="my-search-box"
+      (keydown.enter)="$event.preventDefault()"
+      placeholder="Search Location"
+      type="text"
+      #placeSearch
+    />
+    <google-map
+      #myGoogleMap
+      [zoom]="mapSettings.zoom"
+      width="100%"
+      height="100%"
+      [center]="mapSettings.center"
+      [options]="mapSettings.options"
+      (zoomChanged)="onZoomChange()"
+    >
+      <map-marker
+        *ngIf="personalInformationService.location() as markerLoc"
+        #marker="mapMarker"
+        [position]="{
+          lat: markerLoc.latitude,
+          lng: markerLoc.longitude
+        }"
+        [options]="personalMarkerOptions"
+        (mapMouseover)="openInfoWindow(marker)"
+        (mapMouseout)="closeInfoWindow(marker)"
+        (mapClick)="markerClicked($event)"
+      />
+      <map-marker
+        *ngFor="let mark of markers"
+        #marker="mapMarker"
+        [position]="{
+          lat: mark?.latitude ?? 0,
+          lng: mark?.longitude ?? 0
+        }"
+        [options]="markerOptions"
+        (mapMouseover)="openInfoWindow(marker)"
+        (mapMouseout)="closeInfoWindow(marker)"
+        (mapClick)="markerClicked($event)"
+      />
+
+      <map-info-window>
+        <app-info-window></app-info-window>
+      </map-info-window>
+    </google-map>
+  </div>
+</div>
+
+<div *ngIf="overlay" class="overlay">
+  <div
+    class="overlay-content-wrapper"
+    [class.extendedOverlay]="overlayFunction === 'addKid'"
+  >
+    <div class="question-wrapper" *ngIf="overlayFunction === 'addLocation'">
+      Do you want to add location <br />
+      <span>{{ editedLocation.name }}</span> <br />
+      at address <br />
+      <span>{{ editedLocation.address }}</span> <br />
+      to your favorites?
+    </div>
+    <div class="question-wrapper" *ngIf="overlayFunction === 'deletePlace'">
+      Do you want to add location <br />
+      <span>{{ locationToDelete.name }}</span> <br />
+      at address <br />
+      <span>{{ locationToDelete.address }}</span> <br />
+      to your favorites?
+    </div>
+    <div class="question-wrapper" *ngIf="overlayFunction === 'addKid'">
+      Please enter kid information
+    </div>
+    <div
+      class="answers-wrapper"
+      *ngIf="
+        overlayFunction === 'addLocation' || overlayFunction === 'deletePlace'
+      "
+    >
+      <div
+        class="answer"
+        (click)="
+          overlayFunction === 'addLocation' ? addLocation() : deletePlace()
+        "
+      >
+        yes
+      </div>
+      <div class="answer" (click)="closeOverlay()">no</div>
+    </div>
+    <div *ngIf="overlayFunction === 'addKid'" class="add-kid-form-wrapper">
+      <form [formGroup]="form" (ngSubmit)="addKid()">
+        <input
+          formControlName="name"
+          type="text"
+          required="true"
+          placeholder="Enter kid's name"
+        />
+        <select formControlName="gender" id="gender">
+          <option *ngFor="let gender of ['FEMALE', 'MALE']" [value]="gender">
+            {{ gender }}
+          </option>
+        </select>
+        <input type="date" id="date" formControlName="birthday" />
+        <div class="buttons-wrapper">
+          <button type="submit">Ok</button>
+          <button (click)="onCancelAddKid()">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <button (click)="closeOverlay()">
+      <img src="../../assets/icons/cancel.png" />
+    </button>
+  </div>
+</div>

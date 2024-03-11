@@ -1,0 +1,107 @@
+:host {
+  margin: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #eeeeee;
+  overflow-y: scroll;
+  .chat-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .close-wrapper {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      img {
+        width: 20px;
+        height: auto;
+      }
+    }
+
+    .title {
+      flex: 0 0 5%;
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: medium;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .body {
+      flex: 0 0 80%;
+      width: 100%;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-wrapper {
+      flex: 0 0 15%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      form {
+        width: 90%;
+        height: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+          background: none;
+          border: none;
+          outline: none;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          width: 80%;
+          height: 70%;
+          background-color: #ccd4de;
+          margin-right: 20px;
+          border-radius: 10px;
+          padding: 10px;
+          font-size: small;
+          color: #052b37;
+          font-style: italic;
+        }
+
+        button {
+          background-color: #052b37;
+          border: none;
+          outline: none;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          border-radius: 10px;
+          width: 8%;
+          height: 80%;
+          margin-left: 10px;
+          cursor: pointer;
+
+          img {
+            width: 30px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .chat-wrapper-personal {
+    height: 100%;
+    justify-content: space-between;
+  }
+}

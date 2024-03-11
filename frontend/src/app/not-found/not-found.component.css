@@ -1,0 +1,23 @@
+:host {
+  flex: 1;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .main-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      color: #052b37;
+      font-size: xx-large;
+    }
+    img {
+      width: 30%;
+      height: auto;
+    }
+  }
+}

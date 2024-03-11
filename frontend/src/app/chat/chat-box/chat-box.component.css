@@ -1,0 +1,60 @@
+:host {
+  width: 95%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  .message-wrapper {
+    width: 660px;
+    height: 50px;
+    background-color: #052b37;
+    display: flex;
+    padding: 10px;
+    .date-wrapper {
+      line-height: 50px;
+      width: 20%;
+      text-align: center;
+      font-size: small;
+      font-weight: bolder;
+      color: #27a300;
+    }
+    .message-content {
+      line-height: 50px;
+      width: 75%;
+      margin-left: 10px;
+      text-overflow: ellipsis;
+      font-style: italic;
+      color: #ccd4de;
+      font-size: small;
+    }
+  }
+  .passive {
+    flex-direction: row;
+    border-radius: 30px 30px 0 30px;
+  }
+  .active {
+    flex-direction: row-reverse;
+    border-radius: 30px 30px 30px 0;
+  }
+  .icon-wrapper {
+    padding: 10px;
+    width: 100px;
+    margin-left: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #052b37;
+    border-radius: 10px;
+
+    img {
+      width: 40px;
+      height: auto;
+      border-radius: 100px;
+    }
+  }
+  .activeIcon {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}

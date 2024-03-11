@@ -1,0 +1,35 @@
+<input
+  type="text"
+  class="my-search-box"
+  (keydown.enter)="$event.preventDefault()"
+  placeholder="Search Location"
+  type="text"
+  #search
+/>
+<google-map
+  #myGoogleMap
+  [zoom]="mapSettings.zoom"
+  width="100%"
+  height="100%"
+  [center]="mapSettings.center"
+  [options]="mapSettings.options"
+  (zoomChanged)="onZoomChange()"
+>
+  <map-marker
+    *ngFor="let location of mapService.locations()"
+    #marker="mapMarker"
+    [position]="{
+      lat: location?.latitude ?? 0,
+      lng: location?.longitude ?? 0
+    }"
+    [options]="markerOptions"
+    (mapMouseover)="openInfoWindow(marker, location)"
+    (mapMouseout)="closeInfoWindow(marker)"
+    (mapClick)="markerClicked($event)"
+  />
+  <map-info-window>
+    <app-info-window [location]="selectedLocation"></app-info-window>
+  </map-info-window>
+</google-map>
+
+<div *ngIf="overlay" class="overlay"></div>

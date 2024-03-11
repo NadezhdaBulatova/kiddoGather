@@ -1,0 +1,6 @@
+<div class="main-wrapper">
+  <h1>
+    {{ message }} {{ redirect ? " or " : ""
+    }}<a *ngIf="redirect" [routerLink]="redirect">click here</a>
+  </h1>
+</div>

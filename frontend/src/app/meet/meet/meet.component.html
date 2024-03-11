@@ -1,0 +1,18 @@
+<div class="filtering">
+  <div class="results-overview">{{ users.length }} results</div>
+  <form [formGroup]="filterForm">
+    <select formControlName="filterSelect">
+      <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </form>
+  <!-- <div class="filter" (click)="setFilters()"></div> -->
+</div>
+
+<div class="results-wrapper">
+  <app-user-overview
+    *ngFor="let user of users"
+    [user]="user"
+  ></app-user-overview>
+</div>

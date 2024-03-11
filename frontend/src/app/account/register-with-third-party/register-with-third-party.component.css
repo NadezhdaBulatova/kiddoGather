@@ -1,0 +1,116 @@
+:host {
+  flex: 1;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .message {
+      color: #052b37;
+      font-size: xx-large;
+      font-weight: normal;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        font-weight: bold;
+      }
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .input-wrapper {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 20px;
+        border: solid 1px #052b37;
+        margin: 5px;
+        height: 25px;
+        padding: 5px 10px;
+
+        img {
+          height: 60%;
+          width: auto;
+          margin-right: 10px;
+        }
+
+        input {
+          outline: none;
+          border: none;
+          background: transparent;
+          flex: 1;
+          color: #052b37;
+        }
+      }
+
+      .error-wrapper {
+        width: 70%;
+        color: red;
+        font-size: small;
+        margin: -3px 0 0 5px;
+      }
+      button {
+        border: none;
+        width: 75%;
+        background-color: #052b37;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 20px;
+        margin: 15px;
+        height: 35px;
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: rgba(5, 43, 55, 0.5);
+          cursor: not-allowed;
+        }
+      }
+    }
+    .line {
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      text-align: center;
+      color: #052b37;
+      width: 75%;
+
+      div {
+        margin: 10px;
+        a {
+          text-decoration: none;
+          color: inherit;
+          font-weight: bolder;
+        }
+
+        img {
+          width: 30px;
+          height: auto;
+          cursor: pointer;
+        }
+      }
+    }
+    .line::before,
+    .line::after {
+      content: "";
+      flex: 1;
+      border-bottom: 2px solid #052b37;
+    }
+  }
+}

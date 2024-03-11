@@ -1,0 +1,7 @@
+<div class="message-wrapper" [ngClass]="{ active: active, passive: !active }">
+  <div class="date-wrapper">{{ dateDisplay }}</div>
+  <div class="message-content">{{ text }}</div>
+</div>
+<div class="icon-wrapper" [class.activeIcon]="active">
+  <img [src]="active ? userImage : image" />
+</div>

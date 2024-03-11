@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using usersService.Enums;
+
+namespace usersService.Models
+{
+    public class LocationModel
+    {
+        [Key]
+        public string LocationId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Character { get; set; }
+        public string Address { get; set; }
+        public ICollection<UsersLocationsModel> UserLocations { get; set; }
+        public string Name { get; set; }
+    }
+}

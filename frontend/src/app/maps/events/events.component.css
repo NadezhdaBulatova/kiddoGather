@@ -1,0 +1,56 @@
+:host {
+  position: relative;
+  .my-search-box,
+  .my-search-box:focus {
+    outline: none;
+    width: 50%;
+    margin: 10px;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 1px solid #052b37;
+  }
+
+  .my-search-box::placeholder {
+    color: rgba(5, 43, 55, 0.5);
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.my-search-box,
+.my-search-box:focus {
+  outline: none;
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  border: 1px solid #052b37;
+}
+
+.my-search-box::placeholder {
+  color: rgba(5, 43, 55, 0.5);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,70 @@
+@import "@angular/cdk/overlay-prebuilt.css";
+@font-face {
+  font-family: "Protest Riot";
+  src: url("./assets/fonts/ProtestRiot-Regular.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #052b37;
+}
+
+.pac-container {
+  background-color: #eeeeee;
+  border: 1px solid #052b37;
+  border-radius: 10px;
+  margin-top: 2px;
+}
+
+.pac-icon {
+  display: none;
+}
+
+.pac-item {
+  color: rgba(5, 43, 55, 0.5);
+  .pac-item-query {
+    color: rgba(5, 43, 55, 0.5);
+  }
+}
+
+.pac-item:hover {
+  background-color: #ccd4de;
+  .pac-item-query {
+    color: #052b37;
+  }
+}
+div.gm-style-iw.gm-style-iw-c {
+  padding: 10px !important;
+  display: flex !important;
+  background: #052b37 !important;
+  div.gm-style-iw-d {
+    flex: 1 !important;
+    overflow: auto !important;
+    display: flex !important;
+  }
+  .gm-ui-hover-effect {
+    display: none !important;
+  }
+}
+.gm-style .gm-style-iw-tc::after {
+  background: #052b37 !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

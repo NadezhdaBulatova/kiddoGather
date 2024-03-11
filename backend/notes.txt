@@ -1,0 +1,3 @@
+dotnet ef migrations add InitialCreate - to make migration files
+dotnet ef database update - to update DB according to migrations files 
+dotnet add package <> - to add packages 

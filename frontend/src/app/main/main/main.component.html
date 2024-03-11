@@ -1,0 +1,77 @@
+<div [class]="isAccountView ? 'title-account' : 'title-navigation'">
+  <div class="title-wrapper">
+    <img class="logo" src="../../../assets/logo/logo.png" />
+    <h1>KiddoGather</h1>
+  </div>
+  <div *ngIf="!isAccountView" class="account-info-wrapper">
+    <div class="account-logo-wrapper">
+      <img [src]="personalInformationService.profilePictureURL()" />
+    </div>
+    <div class="username-wrapper">{{ personalInformationService.name() }}</div>
+
+    <div class="logout-wrapper">
+      <button (click)="accountService.logout()">logout</button>
+    </div>
+  </div>
+  <nav *ngIf="!isAccountView" class="navigation-wrapper">
+    <a routerLink="/meet" routerLinkActive="active-link">
+      <div
+        [ngStyle]="{
+          'background-image': router.url.startsWith('/meet')
+            ? 'url(../../../assets/icons/meet-active.png)'
+            : 'url(../../../assets/icons/meet-background.png)'
+        }"
+      ></div>
+      <span>meet</span>
+    </a>
+    <a routerLink="/chat" routerLinkActive="active-link">
+      <div
+        [ngStyle]="{
+          'background-image': router.url.startsWith('/chat')
+            ? 'url(../../../assets/icons/chat-active.png)'
+            : 'url(../../../assets/icons/chat-background.png)'
+        }"
+      ></div>
+      <span>chat</span>
+    </a>
+
+    <a routerLink="/navigate" routerLinkActive="active-link">
+      <div
+        [ngStyle]="{
+          'background-image': router.url.startsWith('/navigate')
+            ? 'url(../../../assets/icons/navigate-active.png)'
+            : 'url(../../../assets/icons/navigate-background.png)'
+        }"
+      ></div>
+      <span>navigate</span></a
+    >
+    <a routerLink="/settings" routerLinkActive="active-link">
+      <div
+        [ngStyle]="{
+          'background-image': router.url.startsWith('/settings')
+            ? 'url(../../../assets/icons/setting-dark.png)'
+            : 'url(../../../assets/icons/setting-light.png)'
+        }"
+      ></div>
+      <span>settings</span>
+    </a>
+  </nav>
+  <div [class]="isAccountView ? 'image-wrapper-account' : 'image-wrapper'">
+    <div class="left-up circle"></div>
+    <div class="right-up circle"></div>
+    <div class="left-down circle"></div>
+    <div class="right-down circle"></div>
+    <div
+      class="background-image"
+      [ngStyle]="{ 'background-image': 'url(' + imagePath + ')' }"
+    ></div>
+  </div>
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="circle circle-3"></div>
+  <div class="circle circle-4"></div>
+  <div class="circle circle-5"></div>
+</div>
+<div [class]="isAccountView ? 'main-content-account' : 'main-content'">
+  <router-outlet />
+</div>

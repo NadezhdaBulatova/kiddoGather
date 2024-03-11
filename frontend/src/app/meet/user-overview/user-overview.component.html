@@ -1,0 +1,125 @@
+<div class="image-wrapper">
+  <img
+    [src]="user.image === null ? '../../../assets/icons/user.png' : user.image"
+  />
+  <div class="name">{{ user.name }}</div>
+</div>
+<div class="info-wrapper">
+  <div class="info">
+    <div class="info-title distance">
+      {{ user.distanceFromUser === -1 ? "NA" : user.distanceFromUser }}
+    </div>
+    <div class="info-value">km away from you</div>
+  </div>
+  <div class="info">
+    <div class="info-title kids">
+      {{ user.kidsAgeDifference === -1 ? "NA" : user.kidsAgeDifference }}
+    </div>
+    <div class="info-value">years kid's gap</div>
+  </div>
+  <div class="info">
+    <div class="info-title favorite-places">
+      {{ user.sameFavPlaces }}
+    </div>
+    <div class="info-value">same favorite places</div>
+  </div>
+  <div class="info">
+    <div class="info-title language">
+      {{ user.sameLang }}
+    </div>
+    <div class="info-value">same speaking language</div>
+  </div>
+  <div class="info">
+    <ng-template cdkPortal>
+      <div class="overlay-body">
+        <div class="name-wrapper">{{ user.name }}</div>
+        <div class="main-wrapper">
+          <div class="account-picture-wrapper">
+            <div class="user-icon-wrapper">
+              <img
+                class="user-icon"
+                [src]="
+                  user.image === null
+                    ? '../../../assets/icons/user.png'
+                    : user.image
+                "
+              />
+            </div>
+            <div class="connect" (click)="startChat()">
+              <img src="../../../assets/icons/message.png" />
+            </div>
+            <div class="kids">
+              <app-kid
+                *ngFor="let kid of user?.kids"
+                [small]="true"
+                [name]="kid.name"
+                [age]="kid.birthday"
+                [gender]="kid.gender"
+                [id]="kid.id || undefined"
+              ></app-kid>
+            </div>
+          </div>
+          <div class="account-info-wrapper">
+            <div class="user-info">
+              <div class="info">
+                <img class="icon" src="../../assets/icons/cake.png" />
+                <div class="content">
+                  {{ birthday }}
+                </div>
+              </div>
+              <div class="info">
+                <img class="icon" src="../../assets/icons/worldwide.png" />
+                <div class="content">
+                  {{ user.location?.address || "Location is not set" }}
+                </div>
+              </div>
+              <div class="info">
+                <img class="icon" src="../../assets/icons/translate.png" />
+                <div class="content">
+                  {{ languages }}
+                </div>
+              </div>
+            </div>
+            <div class="map-wrapper">
+              <div class="places-list-wrapper">
+                <h3>Favorite places</h3>
+                <div
+                  class="place"
+                  *ngFor="let place of user.locations"
+                  (click)="recenterMap(place)"
+                >
+                  <img src="../../assets/icons/place.png" />
+                  <div class="place-info">
+                    <p class="name">{{ place?.name }}</p>
+                    <p class="address">{{ place?.address }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="map">
+                <google-map
+                  #myGoogleMap
+                  [zoom]="mapSettings.zoom"
+                  width="100%"
+                  height="100%"
+                  [center]="mapSettings.center"
+                  [options]="mapSettings.options"
+                  (zoomChanged)="onZoomChange()"
+                >
+                  <map-marker
+                    *ngFor="let mark of markers"
+                    #marker="mapMarker"
+                    [position]="{
+                      lat: mark?.latitude ?? 0,
+                      lng: mark?.longitude ?? 0
+                    }"
+                    [options]="markerOptions"
+                  />
+                </google-map>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

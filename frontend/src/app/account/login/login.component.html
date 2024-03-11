@@ -1,0 +1,108 @@
+<div class="form-wrapper">
+  <h1>
+    {{
+      loginCompleted
+        ? "Login was successful. Please wait, you will be redirected"
+        : "Log in"
+    }}
+  </h1>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+    *ngIf="!loginCompleted"
+  >
+    <div class="input-wrapper">
+      <img src="../../../assets/icons/email.png" />
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        required="true"
+        placeholder="Enter your email"
+        (focus)="removeMessage()"
+      />
+    </div>
+    <div
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+      class="error-wrapper"
+    >
+      <div *ngIf="form.get('email')?.hasError('required')">
+        Email is required
+      </div>
+      <div *ngIf="form.get('email')?.hasError('email')">Email is invalid</div>
+    </div>
+
+    <div
+      *ngIf="
+        emailDoesNotExist !== '' &&
+        emailDoesNotExist === form.get('email')?.value
+      "
+      class="error-wrapper"
+    >
+      <div>
+        Entered email does not exist. Please enter a valid email or register
+      </div>
+    </div>
+    <div *ngIf="confirmEmail" class="error-wrapper">
+      <div>
+        Please confirm your email or
+        <a routerLink="/resend-email">click here</a> to request new confirmation
+        email
+      </div>
+    </div>
+
+    <div class="input-wrapper">
+      <img src="../../../assets/icons/password.png" />
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        required="true"
+        placeholder="Enter your password"
+        (focus)="removeMessage()"
+      />
+    </div>
+    <div
+      *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+      class="error-wrapper"
+    >
+      <div *ngIf="form.get('password')?.hasError('required')">
+        Password is required.
+      </div>
+      <div *ngIf="form.get('password')?.hasError('minlength')">
+        Password should be at least 6 characters long.
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        invalidPassword !== '' &&
+        invalidPassword === form.get('password')?.value
+      "
+      class="error-wrapper"
+    >
+      <div>
+        Invalid password. Please enter a valid password or reset your password
+      </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Login</button>
+    <button (click)="resetPassword()">Reset password</button>
+  </form>
+
+  <div *ngIf="!loginCompleted" class="line">
+    <div>
+      <img
+        src="../../../assets/icons/facebook.png"
+        (click)="loginWithFacebook()"
+      />
+    </div>
+    <div #googleButton>
+      <img src="../../../assets/icons/google.png" />
+    </div>
+  </div>
+  <div *ngIf="message" class="line">{{ message }}</div>
+  <div class="line" *ngIf="!loginCompleted">
+    <div>or <a routerLink="/register">register</a></div>
+  </div>
+</div>
